@@ -36,6 +36,19 @@ export class App extends Component {
     this.setState({ filter });
   };
 
+  componentDidMount() {
+    const localData = JSON.parse(localStorage.getItem('phoneBook'));
+    if (localData) {
+      this.setState({ contacts: localData });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('phoneBook', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const filteredPhoneList = this.state.filter
       ? this.state.contacts.filter(
