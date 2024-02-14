@@ -64,7 +64,7 @@ export class App extends Component {
           Phonebook
         </h1>
         <FormNewPhone onAddPhone={this.handleAddPhone} />
-        <h2 className="text-3xl font-bold text-stone-700">Contacts</h2>
+        <h2 className="text-3xl font-bold text-stone-700 mt-5">Contacts</h2>
         <Filter onChange={this.handleFilterChange} />
         <Contacts
           phoneList={filteredPhoneList}

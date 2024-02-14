@@ -16,7 +16,7 @@ export default function Input({
   }
 
   return (
-    <p className="flex flex-col gap-3  w-full">
+    <p className="flex flex-col gap-2  w-full">
       <label className=" text-xl text-stone-700 " htmlFor={name}>
         {label}
       </label>
