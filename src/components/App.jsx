@@ -7,6 +7,19 @@ import Filter from './Filter';
 export class App extends Component {
   state = { contacts: [], filter: '' };
 
+  componentDidMount() {
+    const localData = JSON.parse(localStorage.getItem('phoneBook'));
+    if (localData) {
+      this.setState({ contacts: localData });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('phoneBook', JSON.stringify(this.state.contacts));
+    }
+  }
+
   handleAddPhone = newPhone => {
     if (
       this.state.contacts.some(
@@ -35,19 +48,6 @@ export class App extends Component {
   handleFilterChange = (_, filter) => {
     this.setState({ filter });
   };
-
-  componentDidMount() {
-    const localData = JSON.parse(localStorage.getItem('phoneBook'));
-    if (localData) {
-      this.setState({ contacts: localData });
-    }
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('phoneBook', JSON.stringify(this.state.contacts));
-    }
-  }
 
   render() {
     const filteredPhoneList = this.state.filter
